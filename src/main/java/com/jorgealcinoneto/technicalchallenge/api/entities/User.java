@@ -16,7 +16,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "tb_usuario")
 public class User implements Serializable{
 
 	/**
@@ -26,9 +26,10 @@ public class User implements Serializable{
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "usuario_id")
 	private Long id;
 	
-	@Column(name = "nome", nullable = false)
+	@Column(name = "usuario_nome", nullable = false)
 	private String name;
 	
 	@Column(name = "cpf", nullable = false)
