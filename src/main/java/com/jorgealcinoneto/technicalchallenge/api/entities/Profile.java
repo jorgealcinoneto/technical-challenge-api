@@ -13,7 +13,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "perfil")
+@Table(name = "tb_perfil")
 public class Profile implements Serializable{
 
 	/**

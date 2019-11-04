@@ -13,7 +13,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cargo")
+@Table(name = "tb_cargo")
 public class Office implements Serializable{
 
 	/**

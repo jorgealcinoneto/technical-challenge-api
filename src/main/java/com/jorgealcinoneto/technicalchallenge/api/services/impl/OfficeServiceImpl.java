@@ -11,7 +11,7 @@ import com.jorgealcinoneto.technicalchallenge.api.entities.Office;
 import com.jorgealcinoneto.technicalchallenge.api.repositories.OfficeRepository;
 import com.jorgealcinoneto.technicalchallenge.api.services.OfficeService;
 
-@Service
+
 public class OfficeServiceImpl implements OfficeService{
 	
 	private static final Logger log = LoggerFactory.getLogger(OfficeServiceImpl.class);

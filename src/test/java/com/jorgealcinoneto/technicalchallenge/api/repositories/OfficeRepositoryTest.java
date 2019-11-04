@@ -8,29 +8,29 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.jorgealcinoneto.technicalchallenge.api.entities.Profile;
+import com.jorgealcinoneto.technicalchallenge.api.entities.Office;
 
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @SpringBootTest
-public class ProfileRepositoryTest {
+public class OfficeRepositoryTest {
 	
 	@Autowired
-	private ProfileRepository profileRepository;
+	private OfficeRepository officeRepository;
 	
 	@Before
 	public void setUp() throws Exception {
-		Profile profile = new Profile();
-		profile.setName("Adm");
-		profile.setDescription("Administrador do Sistema");
+		Office office = new Office();
+		office.setName("Vendedor");
+		office.setDescription("Vendedor da compania");
 		
-		this.profileRepository.save(profile);
+		this.officeRepository.save(office);
 	}
 	
 	@After
     public final void tearDown() { 
-		this.profileRepository.deleteAll();
+		this.officeRepository.deleteAll();
 	}
 
 	

@@ -1,6 +1,8 @@
 package com.jorgealcinoneto.technicalchallenge.api.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -14,6 +16,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import com.jorgealcinoneto.technicalchallenge.api.enums.TypeGender;
 import com.jorgealcinoneto.technicalchallenge.api.enums.TypeStatus;
@@ -42,24 +47,27 @@ public class User implements Serializable{
 	private TypeGender gender;
 	
 	@Column(name = "data_nascimento", nullable = false)
-	private Date dateOfBirth;
+	private LocalDate birthDate;
 	
-	@OneToOne (cascade=CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name="cargo_id", nullable=false)
 	private Office office;
 	
-	@OneToOne (cascade=CascadeType.ALL)
-	@JoinColumn(name="perfil_id", nullable=false)
+	@OneToOne 
+	@JoinColumn(name="perfil_id", nullable=true)
 	private Profile profile;
 	
-	@Column(name = "data_criacao", nullable = false)
-	private Date dateCreate;
+	@Column(name = "data_criacao", nullable = true)
+	private Date createDate;
 	
 	@Column(name = "data_atualizacao", nullable = false)
-	private Date dateUpdate;
+	private Date updateDate;
 	
 	@Column(name = "status", nullable = false)
 	private TypeStatus status;
+	
+	@Transient
+	private Integer age;
 	
 	public User() {
 	}
@@ -96,13 +104,6 @@ public class User implements Serializable{
 		this.gender = gender;
 	}
 
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
 
 	public Office getOffice() {
 		return office;
@@ -120,22 +121,6 @@ public class User implements Serializable{
 		this.profile = profile;
 	}
 
-	public Date getDateCreate() {
-		return dateCreate;
-	}
-
-	public void setDateCreate(Date dateCreate) {
-		this.dateCreate = dateCreate;
-	}
-
-	public Date getDateUpdate() {
-		return dateUpdate;
-	}
-
-	public void setDateUpdate(Date dateUpdate) {
-		this.dateUpdate = dateUpdate;
-	}
-
 	public TypeStatus getStatus() {
 		return status;
 	}
@@ -143,26 +128,67 @@ public class User implements Serializable{
 	public void setStatus(TypeStatus status) {
 		this.status = status;
 	}
+	
+	public LocalDate getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+	
+	
+	public void setAge() {
+		
+	  LocalDate currentDate = LocalDate.now();
+		
+      if ((this.birthDate != null) && (currentDate != null)) {
+          this.age = Period.between(this.birthDate, currentDate).getYears();
+      } else {
+    	  this.age = 0;
+      }
+	}
+
+	public Integer getAge() {
+		
+		return this.age;
+	}
 
 	@PreUpdate
     public void preUpdate() {
-		dateUpdate = new Date();
+		updateDate = new Date();
     }
      
     @PrePersist
     public void prePersist() {
         final Date atual = new Date();
-        dateCreate = atual;
-        dateUpdate = atual;
+        createDate = atual;
+        updateDate = atual;
     }
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", cpf=" + cpf + ", gender=" + gender.getDescription() + ", dateOfBirth="
-				+ dateOfBirth + ", office=" + office + ", profile=" + profile + ", dateCreate=" + dateCreate
-				+ ", dateUpdate=" + dateUpdate + ", status=" + status.getValue() + "]";
+		return "User [id=" + id + ", name=" + name + ", cpf=" + cpf + ", gender=" + gender + ", birthDate=" + birthDate
+				+ ", office=" + office + ", profile=" + profile + ", createDate=" + createDate + ", updateDate="
+				+ updateDate + ", status=" + status + ", age=" + age + "]";
 	}
-
-
+    
+    
 	
 }

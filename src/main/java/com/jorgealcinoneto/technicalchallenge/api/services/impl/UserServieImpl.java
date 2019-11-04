@@ -10,13 +10,13 @@ import com.jorgealcinoneto.technicalchallenge.api.enums.TypeStatus;
 import com.jorgealcinoneto.technicalchallenge.api.repositories.UserRepository;
 import com.jorgealcinoneto.technicalchallenge.api.services.UserService;
 
-@Service
+
 public class UserServieImpl implements UserService{
 	
 	private static final Logger log = LoggerFactory.getLogger(UserServieImpl.class);
 	
-	@Autowired
-	private UserRepository userRepository;
+//	@Autowired
+//	private UserRepository userRepository;
 
 	@Override
 	public User create(User user) {
