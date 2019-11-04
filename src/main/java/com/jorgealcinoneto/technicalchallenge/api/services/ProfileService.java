@@ -1,16 +1,15 @@
 package com.jorgealcinoneto.technicalchallenge.api.services;
 
-import java.util.List;
+import org.springframework.stereotype.Service;
 
 import com.jorgealcinoneto.technicalchallenge.api.entities.Profile;
 
 
-
+@Service
 public interface ProfileService {
 
 
-	public Profile update(Profile profile);
+	public Profile persist(Profile profile);
 	
-	public List<Profile> findAll();
 	
 }

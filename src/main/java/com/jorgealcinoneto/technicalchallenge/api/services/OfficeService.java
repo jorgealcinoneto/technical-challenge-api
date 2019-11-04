@@ -1,15 +1,13 @@
 package com.jorgealcinoneto.technicalchallenge.api.services;
 
-import java.util.List;
+import org.springframework.stereotype.Service;
 
 import com.jorgealcinoneto.technicalchallenge.api.entities.Office;
 
 
-
+@Service
 public interface OfficeService {
 
-	public Office update(Office office);
-	
-	public List<Office> findAll();
+	public Office persist(Office office);
 	
 }

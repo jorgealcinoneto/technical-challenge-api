@@ -1,11 +1,8 @@
 package com.jorgealcinoneto.technicalchallenge.api.services.impl;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.jorgealcinoneto.technicalchallenge.api.entities.Profile;
 import com.jorgealcinoneto.technicalchallenge.api.repositories.ProfileRepository;
@@ -20,15 +17,11 @@ public class ProfileServiceImpl implements ProfileService{
 	private ProfileRepository profileRepository;
 
 	@Override
-	public Profile update(Profile profile) {
-		// TODO Auto-generated method stub
-		return null;
+	public Profile persist(Profile profile) {
+		log.info("Persisting Profile: {}", profile);
+		return this.profileRepository.save(profile);
 	}
 
-	@Override
-	public List<Profile> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

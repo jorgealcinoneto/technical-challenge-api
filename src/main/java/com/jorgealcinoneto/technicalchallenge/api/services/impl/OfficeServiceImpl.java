@@ -1,11 +1,8 @@
 package com.jorgealcinoneto.technicalchallenge.api.services.impl;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.jorgealcinoneto.technicalchallenge.api.entities.Office;
 import com.jorgealcinoneto.technicalchallenge.api.repositories.OfficeRepository;
@@ -20,13 +17,11 @@ public class OfficeServiceImpl implements OfficeService{
 	private OfficeRepository officeRepository;
 
 	@Override
-	public Office update(Office office) {
-		return null;
+	public Office persist(Office office) {
+		
+		log.info("Persisting Office: {}", office);
+		return this.officeRepository.save(office);
 	}
 
-	@Override
-	public List<Office> findAll() {
-		return null;
-	}
 
 }
