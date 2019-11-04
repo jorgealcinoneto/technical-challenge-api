@@ -25,10 +25,10 @@ public class Profile implements Serializable{
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "nome", nullable = false)
+	@Column(name = "nome", nullable = false, length = 100)
 	private String name;
 	
-	@Column(name = "descricao", nullable = false)
+	@Column(name = "descricao", nullable = false, length = 255)
 	private String description;
 
 	@Column(name = "data_criacao", nullable = false)

@@ -2,18 +2,18 @@ CREATE TABLE `tb_usuario` (
   `usuario_id` bigint(20) NOT NULL,
   `usuario_nome` varchar(255) NOT NULL,
   `usuario_cpf` varchar(11) NOT NULL UNIQUE,
-  `usuario_sexo` enum('masculino','feminino') NOT NULL,
+  `usuario_sexo` enum('m','f') NOT NULL,
   `usuario_data_nascimento` datetime NOT NULL,
   `cargo_id` bigint(20) NOT NULL,
   `perfil_id` bigint(20) NOT NULL,
   `usuario_data_atualizacao` datetime NOT NULL,
   `usuario_data_criacao` datetime NOT NULL,
-  `usuario_status` enum('ativo','inativo') NOT NULL
+  `usuario_status` SMALLINT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `tb_cargo` (
   `cargo_id` bigint(20) NOT NULL,
-  `cargo_nome` varchar(255) NOT NULL,
+  `cargo_nome` varchar(100) NOT NULL,
   `cargo_descricao` varchar(255) NOT NULL UNIQUE,
   `cargo_data_atualizacao` datetime NOT NULL,
   `cargo_data_criacao` datetime NOT NULL
@@ -21,7 +21,7 @@ CREATE TABLE `tb_cargo` (
 
 CREATE TABLE `tb_perfil` (
   `perfil_id` bigint(20) NOT NULL,
-  `perfil_nome` varchar(255) NOT NULL,
+  `perfil_nome` varchar(100) NOT NULL,
   `perfil_descricao` varchar(255) NOT NULL UNIQUE,
   `perfil_data_atualizacao` datetime NOT NULL,
   `perfil_data_criacao` datetime NOT NULL
@@ -75,3 +75,8 @@ ALTER TABLE `tb_usuario`
 --
 ALTER TABLE `tb_usuario`
   ADD CONSTRAINT `usuario_perfil_fk` FOREIGN KEY (`perfil_id`) REFERENCES `tb_perfil` (`perfil_id`);
+  
+--
+-- Add coment for table `tb_usuario`
+--  
+ALTER TABLE `tb_usuario` CHANGE `usuario_status` `usuario_status` INT COMMENT '0=ativo/1=inativo';

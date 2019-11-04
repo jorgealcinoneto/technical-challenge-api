@@ -15,6 +15,9 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import com.jorgealcinoneto.technicalchallenge.api.enums.TypeGender;
+import com.jorgealcinoneto.technicalchallenge.api.enums.TypeStatus;
+
 @Entity
 @Table(name = "tb_usuario")
 public class User implements Serializable{
@@ -29,14 +32,14 @@ public class User implements Serializable{
 	@Column(name = "usuario_id")
 	private Long id;
 	
-	@Column(name = "usuario_nome", nullable = false)
+	@Column(name = "usuario_nome", nullable = false, length = 255)
 	private String name;
 	
-	@Column(name = "cpf", nullable = false)
+	@Column(name = "cpf", nullable = false, length = 11)
 	private String cpf;
 	
 	@Column(name = "sexo", nullable = false)
-	private String sexo;
+	private TypeGender gender;
 	
 	@Column(name = "data_nascimento", nullable = false)
 	private Date dateOfBirth;
@@ -56,7 +59,7 @@ public class User implements Serializable{
 	private Date dateUpdate;
 	
 	@Column(name = "status", nullable = false)
-	private String status;
+	private TypeStatus status;
 	
 	public User() {
 	}
@@ -85,12 +88,12 @@ public class User implements Serializable{
 		this.cpf = cpf;
 	}
 
-	public String getSexo() {
-		return sexo;
+	public TypeGender getGender() {
+		return gender;
 	}
 
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
+	public void setGender(TypeGender gender) {
+		this.gender = gender;
 	}
 
 	public Date getDateOfBirth() {
@@ -133,14 +136,14 @@ public class User implements Serializable{
 		this.dateUpdate = dateUpdate;
 	}
 
-	public String getStatus() {
+	public TypeStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(TypeStatus status) {
 		this.status = status;
 	}
-	
+
 	@PreUpdate
     public void preUpdate() {
 		dateUpdate = new Date();
@@ -155,12 +158,11 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", cpf=" + cpf + ", sexo=" + sexo + ", dateOfBirth=" + dateOfBirth
-				+ ", office=" + office + ", profile=" + profile + ", dateCreate=" + dateCreate + ", dateUpdate="
-				+ dateUpdate + ", status=" + status + "]";
+		return "User [id=" + id + ", name=" + name + ", cpf=" + cpf + ", gender=" + gender.getDescription() + ", dateOfBirth="
+				+ dateOfBirth + ", office=" + office + ", profile=" + profile + ", dateCreate=" + dateCreate
+				+ ", dateUpdate=" + dateUpdate + ", status=" + status.getValue() + "]";
 	}
-	
-	
+
 
 	
 }
