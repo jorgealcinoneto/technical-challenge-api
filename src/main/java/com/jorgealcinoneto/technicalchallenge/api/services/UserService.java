@@ -1,5 +1,7 @@
 package com.jorgealcinoneto.technicalchallenge.api.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.jorgealcinoneto.technicalchallenge.api.entities.User;
@@ -13,6 +15,8 @@ public interface UserService {
 	public void disable(TypeStatus typeStatus, Long id);
 	
 	public void remove(Long id);
+	
+	public List<User> listAll(Long id);
 	
 	
 	

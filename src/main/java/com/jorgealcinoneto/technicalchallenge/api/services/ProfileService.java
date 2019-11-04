@@ -1,14 +1,15 @@
 package com.jorgealcinoneto.technicalchallenge.api.services;
 
-import org.springframework.stereotype.Service;
-
 import com.jorgealcinoneto.technicalchallenge.api.entities.Profile;
 
-
-@Service
 public interface ProfileService {
 
-
+	/**
+	 * Persist a new profile.
+	 * 
+	 * @param profile
+	 * @return Profile
+	 */
 	public Profile persist(Profile profile);
 	
 	

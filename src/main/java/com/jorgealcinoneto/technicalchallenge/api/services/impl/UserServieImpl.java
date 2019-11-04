@@ -1,5 +1,7 @@
 package com.jorgealcinoneto.technicalchallenge.api.services.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
@@ -38,6 +40,12 @@ public class UserServieImpl implements UserService{
 	public void remove(Long id) {
 		log.info("Removing UserId: {}", id);
 		this.userRepository.deleteById(id);
+	}
+
+	@Override
+	public List<User> listAll(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
