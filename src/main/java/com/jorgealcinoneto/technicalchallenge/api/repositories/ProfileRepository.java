@@ -2,10 +2,10 @@ package com.jorgealcinoneto.technicalchallenge.api.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.jorgealcinoneto.technicalchallenge.api.entities.User;
+import com.jorgealcinoneto.technicalchallenge.api.entities.Profile;
 
 
-public interface ProfileRepository extends JpaRepository<User, Long> {
+public interface ProfileRepository extends JpaRepository<Profile, Long> {
 	
 
 }
