@@ -40,30 +40,30 @@ public class User implements Serializable{
 	@Column(name = "usuario_nome", nullable = false, length = 255)
 	private String name;
 	
-	@Column(name = "cpf", nullable = false, length = 11)
+	@Column(name = "usuario_cpf", nullable = false, length = 11)
 	private String cpf;
 	
-	@Column(name = "sexo", nullable = false)
+	@Column(name = "usuario_sexo", nullable = false)
 	private TypeGender gender;
 	
-	@Column(name = "data_nascimento", nullable = false)
+	@Column(name = "usuario_data_nascimento", nullable = false)
 	private LocalDate birthDate;
 	
 	@OneToOne
-	@JoinColumn(name="cargo_id", nullable=false)
+	@JoinColumn(name="usuario_cargo_id", nullable=false)
 	private Office office;
 	
 	@OneToOne 
-	@JoinColumn(name="perfil_id", nullable=true)
+	@JoinColumn(name="usuario_perfil_id", nullable=true)
 	private Profile profile;
 	
-	@Column(name = "data_criacao", nullable = true)
+	@Column(name = "usuario_data_criacao", nullable = true)
 	private Date createDate;
 	
-	@Column(name = "data_atualizacao", nullable = false)
+	@Column(name = "usuario_data_atualizacao", nullable = false)
 	private Date updateDate;
 	
-	@Column(name = "status", nullable = false)
+	@Column(name = "usuario_status", nullable = false)
 	private TypeStatus status;
 	
 	@Transient

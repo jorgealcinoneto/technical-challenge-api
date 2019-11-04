@@ -1,5 +1,6 @@
 package com.jorgealcinoneto.technicalchallenge.api.repositories;
 
+
 import static org.junit.Assert.assertNotNull;
 
 import java.time.LocalDate;
@@ -35,6 +36,8 @@ public class UserRepositoryTest {
 	@Autowired
 	private OfficeRepository  officeRepository;
 	
+	public Long idUserPersisted;
+	
 	@Before
 	public void setUp() throws Exception {
 		Office office = new Office();
@@ -48,7 +51,8 @@ public class UserRepositoryTest {
 		profile.setDescription("Usuario comum");
 		
 		this.profileRepository.save(profile);
-		this.userRepository.save(this.getDataUser());
+		User user = this.userRepository.save(this.getDataUser());
+		this.idUserPersisted = user.getId();
 	}
 
 	@After
@@ -86,6 +90,14 @@ public class UserRepositoryTest {
 		Optional<User> user = this.userRepository.findByCpf(cpf);
 		
 		assertNotNull(user);
+	}
+	
+	@Test
+	public void testSetStatus() {
+		Integer rowsAffected = this.userRepository.updateStatus(TypeStatus.DISABLED, this.idUserPersisted);
+		
+		System.out.println(rowsAffected);
+		assertNotNull(rowsAffected);
 	}
 	
 
