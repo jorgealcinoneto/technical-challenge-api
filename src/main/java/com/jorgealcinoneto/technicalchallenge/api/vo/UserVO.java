@@ -1,9 +1,9 @@
-package com.jorgealcinoneto.technicalchallenge.api.dto;
+package com.jorgealcinoneto.technicalchallenge.api.vo;
 
 import java.util.Optional;
 
 
-public class UserDTO {
+public class UserVO {
 	
 	private Long id;
 	private String name;

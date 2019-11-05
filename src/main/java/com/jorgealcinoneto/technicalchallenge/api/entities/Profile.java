@@ -23,18 +23,19 @@ public class Profile implements Serializable{
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "perfil_id")
 	private Long id;
 	
-	@Column(name = "nome", nullable = false, length = 100)
+	@Column(name = "perfil_nome", nullable = false, length = 100)
 	private String name;
 	
-	@Column(name = "descricao", nullable = false, length = 255)
+	@Column(name = "perfil_descricao", nullable = false, length = 255)
 	private String description;
 
-	@Column(name = "data_criacao", nullable = false)
+	@Column(name = "perfil_data_criacao", nullable = true)
 	private Date dateCreate;
 	
-	@Column(name = "data_atualizacao", nullable = false)
+	@Column(name = "perfil_data_atualizacao", nullable = true)
 	private Date dateUpdate;
 	
 	

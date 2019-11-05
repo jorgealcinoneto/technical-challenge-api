@@ -23,18 +23,19 @@ public class Office implements Serializable{
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "cargo_id")
 	private Long id;
 	
-	@Column(name = "nome", nullable = false,length = 100)
+	@Column(name = "cargo_nome", nullable = false,length = 100)
 	private String name;
 	
-	@Column(name = "descricao", nullable = false, length = 255)
+	@Column(name = "cargo_descricao", nullable = false, length = 255)
 	private String description;
 
-	@Column(name = "data_criacao", nullable = false)
+	@Column(name = "cargo_data_criacao", nullable = true)
 	private Date dateCreate;
 	
-	@Column(name = "data_atualizacao", nullable = false)
+	@Column(name = "cargo_data_atualizacao", nullable = true)
 	private Date dateUpdate;
 	
 	
