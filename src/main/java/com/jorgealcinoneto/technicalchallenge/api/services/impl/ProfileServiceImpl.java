@@ -1,5 +1,7 @@
 package com.jorgealcinoneto.technicalchallenge.api.services.impl;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class ProfileServiceImpl implements ProfileService{
 		return this.profileRepository.save(profile);
 	}
 
-
+	@Override
+	public Optional<Profile> findById(Long id) {
+		return this.profileRepository.findById(id);
+	}
 
 }

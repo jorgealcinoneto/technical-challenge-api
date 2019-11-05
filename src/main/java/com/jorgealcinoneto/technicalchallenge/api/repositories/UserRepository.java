@@ -14,7 +14,6 @@ import com.jorgealcinoneto.technicalchallenge.api.entities.User;
 import com.jorgealcinoneto.technicalchallenge.api.enums.TypeGender;
 import com.jorgealcinoneto.technicalchallenge.api.jdbc.repositories.UserJdbcRepository;
 
-
 @Transactional(readOnly = true)
 @NamedQueries({
 	@NamedQuery(name = "UserRepository.findByProfileId", 

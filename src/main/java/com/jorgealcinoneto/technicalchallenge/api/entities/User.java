@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +15,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import com.jorgealcinoneto.technicalchallenge.api.enums.TypeGender;
@@ -180,6 +177,7 @@ public class User implements Serializable{
         final Date atual = new Date();
         createDate = atual;
         updateDate = atual;
+        this.status = TypeStatus.ENABLED;
     }
 
 	@Override

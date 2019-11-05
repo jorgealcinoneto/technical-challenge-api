@@ -1,5 +1,7 @@
 package com.jorgealcinoneto.technicalchallenge.api.services;
 
+import java.util.Optional;
+
 import com.jorgealcinoneto.technicalchallenge.api.entities.Profile;
 
 public interface ProfileService {
@@ -11,6 +13,8 @@ public interface ProfileService {
 	 * @return Profile
 	 */
 	public Profile persist(Profile profile);
+	
+	public Optional<Profile> findById(Long id);
 	
 	
 }

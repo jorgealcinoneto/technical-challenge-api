@@ -40,7 +40,7 @@ public class ProfileController {
 	 */
 	@PostMapping("api/profile")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Response<ProfileVO>> cadastrar(@RequestBody ProfileVO profileVO,
+	public ResponseEntity<Response<ProfileVO>> create(@RequestBody ProfileVO profileVO,
 			BindingResult result) throws NoSuchAlgorithmException {
 		
 		log.info("Persisting a new Profile: {}", profileVO.toString());

@@ -1,5 +1,7 @@
 package com.jorgealcinoneto.technicalchallenge.api.services.impl;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,11 @@ public class OfficeServiceImpl implements OfficeService{
 		
 		log.info("Persisting Office: {}", office);
 		return this.officeRepository.save(office);
+	}
+
+	@Override
+	public Optional<Office> findById(Long id) {
+		return this.officeRepository.findById(id);
 	}
 
 
