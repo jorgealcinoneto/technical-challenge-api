@@ -2,6 +2,7 @@ package com.jorgealcinoneto.technicalchallenge.api.controllers;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -13,16 +14,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jorgealcinoneto.technicalchallenge.api.converter.DozerConverter;
 import com.jorgealcinoneto.technicalchallenge.api.entities.Office;
 import com.jorgealcinoneto.technicalchallenge.api.entities.Profile;
 import com.jorgealcinoneto.technicalchallenge.api.entities.User;
 import com.jorgealcinoneto.technicalchallenge.api.enums.TypeGender;
+import com.jorgealcinoneto.technicalchallenge.api.enums.TypeStatus;
 import com.jorgealcinoneto.technicalchallenge.api.response.Response;
 import com.jorgealcinoneto.technicalchallenge.api.services.OfficeService;
 import com.jorgealcinoneto.technicalchallenge.api.services.ProfileService;
@@ -64,6 +69,77 @@ public class UserController {
 		response.setData(userVOConverted);
 		return ResponseEntity.ok(response);
 	}
+	
+	@GetMapping(value = "/api/user/cpf{cpf}")
+	public ResponseEntity<Response<String>> getByCpf(@PathVariable("cpf") String cpf) {
+		log.info("Find User by CPF: {}", cpf);
+		Response<String> response = new Response<String>();
+		Optional<User> user = this.userService.findByCpf(cpf);
+
+		if (!user.isPresent()) {
+			log.info("User not found: {}", cpf);
+			response.getErrors().add("cpf user  not found: " + cpf);
+			return ResponseEntity.badRequest().body(response);
+		}
+
+		response.setData(user.get().toString());
+		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping(value = "/api/user/")
+	public ResponseEntity<Response<String>> getAll() {
+		log.info("Find Users : {}");
+		Response<String> response = new Response<String>();
+		List<User> users = this.userService.listAll();
+
+		response.setData(users.toString());
+		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping(value = "/api/user/office/{officeId}")
+	public ResponseEntity<Response<String>> findByOfficeId(@PathVariable("officeId") Long officeId) {
+		log.info("Find Users by OfficeId: {}", officeId);
+		Response<String> response = new Response<String>();
+		List<User> users = this.userService.findByOfficeId(officeId);
+
+		response.setData(users.toString());
+		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping(value = "/api/user/profile/{profileId}")
+	public ResponseEntity<Response<String>> findByProfileId(@PathVariable("profileId") Long profileId) {
+		log.info("Find Users by OfficeId: {}", profileId);
+		Response<String> response = new Response<String>();
+		List<User> users = this.userService.findByProfileId(profileId);
+
+		response.setData(users.toString());
+		return ResponseEntity.ok(response);
+	}
+	
+	@PutMapping(value = "/api/user/{id}")
+	public ResponseEntity<Response<String>> disableUser(@PathVariable("id") Long id) {
+		log.info("Disable User: {}", id);
+		Response<String> response = new Response<String>();
+
+		this.userService.disable(TypeStatus.DISABLED, id);
+
+		response.setData("User disabled Success");
+
+		return ResponseEntity.ok(response);
+	}
+	
+	@DeleteMapping(value = "/api/user/{id}")
+	public ResponseEntity<Response<String>> delete(@PathVariable("id") Long id) {
+		log.info("Disable User: {}", id);
+		Response<String> response = new Response<String>();
+
+		this.userService.remove(id);
+
+		response.setData("User removed Success");
+
+		return ResponseEntity.ok(response);
+	}
+	
 	
 	private UserVO converterUserToVO(User user)
 			throws NoSuchAlgorithmException {

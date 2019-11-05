@@ -42,7 +42,7 @@ public class UserServieImpl implements UserService{
 	}
 
 	@Override
-	public List<User> listAll(Long id) {
+	public List<User> listAll() {
 		return this.userRepository.findAll();
 	}
 
@@ -69,13 +69,7 @@ public class UserServieImpl implements UserService{
 		return this.userRepository.findByCpf(cpf);
 	}
 
-	@Override
-	public Optional<User> findByGender(TypeGender typeGender) {
-		// TODO Auto-generated method stub
-		return this.userRepository.findByGender(typeGender);
-	}
-	
-	
+
 	
 	
 	

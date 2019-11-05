@@ -18,7 +18,7 @@ public interface UserService {
 	
 	public void remove(Long id);
 	
-	public List<User> listAll(Long id);
+	public List<User> listAll();
 	
 	List<User> findByProfileId(@Param("profileId") Long findByProfileId);
 	
@@ -27,9 +27,6 @@ public interface UserService {
 	public Optional<User> findByName(String name);
 	
 	public Optional<User> findByCpf(String cpf);
-	
-	public Optional<User> findByGender(TypeGender typeGender);
-	
 	
 	
 }
